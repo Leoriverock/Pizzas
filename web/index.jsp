@@ -13,6 +13,7 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
 		<script src="js/init.js"></script>
+                <script src ="js/events.js"></script>
 
 	</head>
 	
@@ -66,16 +67,34 @@
                                                         <header>
 								<h2>Pedidos</h2>
                                                         </header>
-                                                    <div class="row half">
+                                                    <div id="contenido_a_ocultar" class="row half">
                                                         <div class="6u">
                                                             <a href="#" class="button">Pedidos</a>
                                                           </div>
                                                     
                                                         <div class="6u">
-                                                            <a href="#" class="button">Agregar</a>
+                                                            <a href="#" onclick="muestra_oculta('contenido_a_mostrar','contenido_a_ocultar')" class="button">Agregar</a>
                                                           </div>
                                                     </div>
-						
+                                                    <!--Contenido a mostrar-->
+                                                    <div id="contenido_a_mostrar">
+                                                        <form method="post" action="#">
+                                                                    <div class="row half">
+                                                                            <div class="4u"><label class="text" name="Id_Pedido">Pedido Nª 2332</label></div>
+                                                                            <div class="4u"><label class="text" name="Fecha">22/08/2014</label></div>
+                                                                            <div class="4u"><input type="text" class="text" name="celular" placeholder="Buscar cliente..." /></div>
+                                                                            <div class="6u"><input type="text" class="text" name="celular" placeholder="Celular" /></div>
+                                                                            <div class="6u"><input type="text" class="text" name="telephone" placeholder="Telefono" /></div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="row">
+                                                                            <div class="12u">
+                                                                                    <a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar')" class="button">Confirmar</a>
+                                                                            </div>
+                                                                    </div>
+                                                            </form>
+                                                    
+                                                    </div>
                                                 </div>
 						
 					</section>
@@ -104,54 +123,36 @@
 								<div class="row">
 									<div class="12u">
 										<a href="#" class="button">Confirmar</a>
-									</div>
-								</div>
-							</form>
-							
-			     		</div>
-						
-					</section>
+                                                                        </div>
+                                                                </div>
+                                                        </form>
+					</div>
+				</section>
 
 				<!---->
 					<section id="Productos" class="three">
-						
 						<div class="container">
-                                                            
-							
-						</div>
-						
+                                                </div>
 					</section>
 			
 				<!---->
 					<section id="Balance" class="four">
-						
                                             <div class="container">
-
-                                                    
-                                             </div>
-						
+                                            </div>
 					</section>
 					
-				<!-- Contact -->
+		<!-- Contact -->
 					<section id="Contacto" class="five">
 						<div class="container">
-                                                       
-							
-
-						</div>
-						
+                                                </div>
 					</section>
-			
 			</div>	
 			
 		<!-- Footer -->
 			<div id="footer">
-				
 				<!-- Copyright -->
 					<div class="copyright">
 						<p>&copy; 2014 La Pandilla Inc.</p>
-						
 					</div>
-				
 			</div>
 </html>
