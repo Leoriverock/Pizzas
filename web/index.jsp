@@ -1,0 +1,157 @@
+<%-- 
+    Document   : index
+    Created on : 22-ago-2014, 23:05:12
+    Author     : Batcave
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Pizzas Le</title>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<script src="js/init.js"></script>
+
+	</head>
+	
+	<body>
+	
+		<!--
+        
+		
+		-->
+	
+		<!-- Header -->
+			<div id="header" class="skel-panels-fixed">
+
+				<div class="top">
+
+					<!-- Logo -->
+                                            <nav id="nav">
+						<div id="logo">
+                                                    <a href="#hero" id="hero" class="skel-panels-ignoreHref"><span>Pizzas Le</span></a>
+                                                       
+							<span class="byline">Sistema V1.0</span>
+						</div>
+
+					<!-- Nav -->
+						
+							<ul>
+								<li><a href="#Pedidos" id="Pedidos" class="skel-panels-ignoreHref"><span class="icon icon-list-alt">Pedidos</span></a></li>
+								<li><a href="#Clientes" id="Clientes" class="skel-panels-ignoreHref"><span class="icon icon-group">Clientes</span></a></li>
+								<li><a href="#Productos" id="Productos" class="skel-panels-ignoreHref"><span class="icon icon-glass">Productos</span></a></li>
+								<li><a href="#Balance" id="Balance" class="skel-panels-ignoreHref"><span class="icon icon-money">Balance</span></a></li>
+								<li><a href="#Contacto" id="Contacto" class="skel-panels-ignoreHref"><span class="icon icon-envelope">Contacto</span></a></li>
+							</ul>
+						</nav>
+						
+				</div>
+		
+			</div>
+			
+		<!-- Main -->
+			<div id="main">
+			
+				<section id="hero" class="hero">
+					<h2>Pizzas Le</h2>
+					<span>Sistema de gestion de clientes y balance de gastos y entradas</span>
+				</section>
+				
+				<!---->
+					<section id="Pedidos" class="one">
+						
+						<div class="container">
+                                                        <header>
+								<h2>Pedidos</h2>
+                                                        </header>
+                                                    <div class="row half">
+                                                        <div class="6u">
+                                                            <a href="#" class="button">Pedidos</a>
+                                                          </div>
+                                                    
+                                                        <div class="6u">
+                                                            <a href="#" class="button">Agregar</a>
+                                                          </div>
+                                                    </div>
+						
+                                                </div>
+						
+					</section>
+					
+				<!---->
+					<section id="Clientes" class="two">
+						
+						<div class="container">
+					
+                                                        <header>
+								<h2>Clientes</h2>
+							</header>
+							
+							<form method="post" action="#">
+								<div class="row half">
+									<div class="6u"><input type="text" class="text" name="name" placeholder="Nombre" /></div>
+									<div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" /></div>
+									<div class="6u"><input type="text" class="text" name="celular" placeholder="Celular" /></div>
+									<div class="6u"><input type="text" class="text" name="telephone" placeholder="Telefono" /></div>
+								</div>
+								<div class="row half">
+									<div class="12u">
+										<textarea name="address" placeholder="Direccion"></textarea>
+									</div>
+								</div>
+								<div class="row">
+									<div class="12u">
+										<a href="#" class="button">Confirmar</a>
+									</div>
+								</div>
+							</form>
+							
+			     		</div>
+						
+					</section>
+
+				<!---->
+					<section id="Productos" class="three">
+						
+						<div class="container">
+                                                            
+							
+						</div>
+						
+					</section>
+			
+				<!---->
+					<section id="Balance" class="four">
+						
+                                            <div class="container">
+
+                                                    
+                                             </div>
+						
+					</section>
+					
+				<!-- Contact -->
+					<section id="Contacto" class="five">
+						<div class="container">
+                                                       
+							
+
+						</div>
+						
+					</section>
+			
+			</div>	
+			
+		<!-- Footer -->
+			<div id="footer">
+				
+				<!-- Copyright -->
+					<div class="copyright">
+						<p>&copy; 2014 La Pandilla Inc.</p>
+						
+					</div>
+				
+			</div>
+</html>
