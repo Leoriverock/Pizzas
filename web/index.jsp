@@ -83,10 +83,40 @@
                                                                             <div class="4u"><label class="text" name="Id_Pedido">Pedido Nª 2332</label></div>
                                                                             <div class="4u"><label class="text" name="Fecha">22/08/2014</label></div>
                                                                             <div class="4u"><input type="text" class="text" name="celular" placeholder="Buscar cliente..." /></div>
+                                                                            <!--El nombre lo traigo con una funcion ajax de busqueda-->
                                                                             <div class="6u"><input type="text" class="text" name="celular" placeholder="Celular" /></div>
                                                                             <div class="6u"><input type="text" class="text" name="telephone" placeholder="Telefono" /></div>
                                                                     </div>
-                                                                    
+                                                                    <div class="row half">
+									<div class="12u">
+										<textarea name="address" placeholder="Direccion"></textarea>
+                                                                                <!--La direccion se carga cuando cargo el cliente-->
+                                                                        </div>  
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="4u">
+                                                                                <select name="Productos">
+                                                                                  <option selected>--- Cargar producto ---</option>
+                                                                                  <option>Producto 1</option>
+                                                                                  <option>Producto 2</option>
+                                                                                </select>
+                                                                        </div>
+                                                                        <fieldset><legend>Gustos</legend>
+                                                                            <div class="6u">
+                                                                            <input type="checkbox" name="" value="Gusto1">Gusto 1
+                                                                        </div>
+                                                                        <div class="6u">
+                                                                            <input type="checkbox" name="" value="Gusto2">Gusto 2
+                                                                        </div> 
+                                                                             <div class="6u">
+                                                                            <input type="checkbox" name="" value="Gusto1">Gusto 1
+                                                                        </div>
+                                                                        <div class="6u">
+                                                                            <input type="checkbox" name="" value="Gusto2">Gusto 2
+                                                                        </div> 
+                                                                        </fieldset>
+                                                                                         
+                                                                    </div>
                                                                     <div class="row">
                                                                             <div class="12u">
                                                                                     <a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar')" class="button">Confirmar</a>
@@ -107,43 +137,56 @@
                                                         <header>
 								<h2>Clientes</h2>
 							</header>
-							
-							<form method="post" action="#">
+							<!---->
+                                                        <form method="POST" action="ValidarClases.jsp">
 								<div class="row half">
 									<div class="6u"><input type="text" class="text" name="name" placeholder="Nombre" /></div>
 									<div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" /></div>
-									<div class="6u"><input type="text" class="text" name="celular" placeholder="Celular" /></div>
-									<div class="6u"><input type="text" class="text" name="telephone" placeholder="Telefono" /></div>
 								</div>
 								<div class="row half">
 									<div class="12u">
 										<textarea name="address" placeholder="Direccion"></textarea>
-									</div>
-								</div>
+                                                                        </div>  
+                                                                 </div>
 								<div class="row">
 									<div class="12u">
-										<a href="#" class="button">Confirmar</a>
+										<input type="submit" class="button"></a>
                                                                         </div>
                                                                 </div>
                                                         </form>
+                                                        
+                                                        
+                                                       <!-- -->
+							
 					</div>
 				</section>
 
 				<!---->
 					<section id="Productos" class="three">
 						<div class="container">
+                                                    <header>
+								<h2>Productos</h2>
+                                                    </header>
+                                                   
                                                 </div>
 					</section>
 			
 				<!---->
 					<section id="Balance" class="four">
                                             <div class="container">
+                                                <header>
+								<h2>Balance</h2>
+                                                </header>
+                                                
                                             </div>
 					</section>
 					
 		<!-- Contact -->
 					<section id="Contacto" class="five">
 						<div class="container">
+                                                    <header>
+								<h2>Contacto</h2>
+                                                    </header>
                                                 </div>
 					</section>
 			</div>	
@@ -154,5 +197,6 @@
 					<div class="copyright">
 						<p>&copy; 2014 La Pandilla Inc.</p>
 					</div>
-			</div>
+			
+    </body>
 </html>
