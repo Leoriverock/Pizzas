@@ -14,18 +14,32 @@
         newClient.setNombre(request.getParameter("name"));
         newClient.setApellido(request.getParameter("surname"));
         newClient.setDireccion(request.getParameter("address"));
-        newClient.registroCliente();
+       
+        //Mejorar esto luego
+        if(request.getParameter("name") == ""){
+            %><script>alert("Nombre no puede ser vacio.");</script><%
+               }    
+        if(request.getParameter("surname") == ""){
+                %><script>alert("Apellido no puede ser vacio.");</script><%
+               }
+        if(request.getParameter("address") == ""){
+                %><script>alert("Direccion no puede ser vacio.");</script><%
+               }
+        if(request.getParameter("address") != ""){
+              if(request.getParameter("surname") != ""){
+                  if(request.getParameter("name") != ""){
+                       newClient.registroCliente();
+                       %><script>window.location.href='index.jsp';</script><%
+                  }
+              }
+         } 
         //Todavia no valido nada
         //Realizo la consulta sin validar datos y luego redirecciono al index
         %><script>window.location.href='index.jsp';</script><%
-    
+        
+       
     
     %>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    
+   
 </html>

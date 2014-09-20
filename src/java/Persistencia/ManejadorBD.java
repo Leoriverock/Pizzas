@@ -8,6 +8,7 @@ package Persistencia;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -16,7 +17,7 @@ import java.sql.SQLException;
  */
 public class ManejadorBD {
     private final static String driver = "com.mysql.jdbc.Driver";
-    private final static String bd = "jdbc:mysql://localhost:3306/base1";
+    private final static String bd = "jdbc:mysql://localhost:3306/imperium";
     private final static String usuario = "root";
     private final static String password = "root";
     
@@ -55,4 +56,15 @@ public class ManejadorBD {
             System.out.println(ex.toString());
         }
     }
+    //Select de clientes
+    public ResultSet listarClientes(){
+        try {
+            ResultSet rs = st.executeQuery("select * FROM clientes");
+             return rs;
+        } catch (SQLException ex) {
+            System.out.println("No hay clientes aun");
+            return null;
+        }
+    }
+
 }
