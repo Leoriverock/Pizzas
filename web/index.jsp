@@ -12,18 +12,24 @@
 	<head>
 		<title>Pizzas Le</title>
 		<script src="js/jquery.min.js"></script>
+                <script src="js/jquery-ui.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
 		<script src="js/init.js"></script>
                 <script src ="js/events.js"></script>
                 <%    ManejadorBD mbd = ManejadorBD.getInstancia();
                 %>
+                <!--scrips y css-->
                 
+                <style type="text/css">
+                    #Gustos{visibility: hidden;}
+                    
+                </style>
 
 	</head>
 	
 	<body>
-		<!---->
+		
 	
 		<!-- Header -->
 			<div id="header" class="skel-panels-fixed">
@@ -102,9 +108,43 @@
                                                                 <textarea name="address" placeholder="Direccion"></textarea>
                                                                 <!--La direccion se carga cuando cargo el cliente-->
                                                             </div>  
-                                                        </div>    
+                                                        </div> 
+                                                         <div class="row">
+                                                             <label>Agregar Productos</label>
+                                                             <select class="6u"  name="Productos" onchange="muestraGustos()">
+                                                                  <option selected>--- Cargar producto ---</option>
+                                                                  <option value="0">Producto 1</option>
+                                                                  <option value="1">Producto 2</option>
+                                                            </select>
+                                                        </div>  
+                                                            <div id="Gustos" class="row">
+                                                                <fieldset>
+                                                                    <legend class="12u">Gustos</legend>
+                                                                    <div class="6u">
+                                                                        <input type="checkbox" name="" value="1">Gusto 1
+                                                                    </div>
+                                                                    <div class="6u">
+                                                                        <input type="checkbox" name="" value="2">Gusto 2
+                                                                    </div> 
+                                                                    <div class="6u">
+                                                                        <input type="checkbox" name="" value="1">Gusto 1
+                                                                    </div>
+                                                                    <div class="6u">
+                                                                        <input type="checkbox" name="" value="2">Gusto 2
+                                                                    </div> 
+                                                                </fieldset>
+                                                            </div>     
+                                                            <div class="row">
+                                                                <div class="12u">
+                                                                    <table>
+                                                                        <tr><th><a class="button">Añadir</a></th></tr> 
+                                                                        <tr><th>.</th></tr>
+                                                                        <tr><th><a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar')" class="button">Confirmar</a></th></tr> 
+                                                                    </table>
+                                                                </div>  
+                                                            </div>
                                                         </form>
-                                                    </div>
+                                                    
                                             </section>
 					
 				
@@ -121,6 +161,8 @@
                                                                     <div class="row half">
                                                                             <div class="6u"><input type="text" class="text" name="name" placeholder="Nombre" /></div>
                                                                             <div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" /></div>
+                                                                            <div class="6u"><input type="text" class="text" name="mobile" placeholder="Celular" /></div>
+                                                                            <div class="6u"><input type="text" class="text" name="phone" placeholder="Telefono" /></div>
                                                                     </div>
                                                                     <div class="row half">
                                                                             <div class="12u">

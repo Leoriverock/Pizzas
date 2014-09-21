@@ -29,3 +29,18 @@ window.onload = function(){
 muestra_oculta('contenido_a_mostrar','contenido_a_ocultar');
 }
 
+
+$(function() {
+    $( "#accordion" ).accordion({
+      heightStyle: "fill"
+    });
+  });
+  $(function() {
+    $( "#accordion-resizer" ).resizable({
+      minHeight: 140,
+      minWidth: 200,
+      resize: function() {
+        $( "#accordion" ).accordion( "refresh" );
+      }
+    });
+  });
