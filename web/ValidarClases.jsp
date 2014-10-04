@@ -16,23 +16,7 @@
         newClient.setDireccion(request.getParameter("address"));
        
         //Mejorar esto luego
-        if(request.getParameter("name") == ""){
-            %><script>alert("Nombre no puede ser vacio.");</script><%
-               }    
-        if(request.getParameter("surname") == ""){
-                %><script>alert("Apellido no puede ser vacio.");</script><%
-               }
-        if(request.getParameter("address") == ""){
-                %><script>alert("Direccion no puede ser vacio.");</script><%
-               }
-        if(request.getParameter("address") != ""){
-              if(request.getParameter("surname") != ""){
-                  if(request.getParameter("name") != ""){
-                       newClient.registroCliente();
-                       %><script>window.location.href='index.jsp';</script><%
-                  }
-              }
-         } 
+         newClient.registroCliente();
         //Todavia no valido nada
         //Realizo la consulta sin validar datos y luego redirecciono al index
         %><script>window.location.href='index.jsp';</script><%

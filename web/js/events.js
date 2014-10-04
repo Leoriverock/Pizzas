@@ -29,18 +29,30 @@ window.onload = function(){
 muestra_oculta('contenido_a_mostrar','contenido_a_ocultar');
 }
 
+//function generar id producto - esto no me sirve
+var fecha = new Date();
+var unidad = 8;
+var decena = 8;
+var centena = 0;
+var mil = 0;
+var concat = "";
+function generar_id_producto(){
 
-$(function() {
-    $( "#accordion" ).accordion({
-      heightStyle: "fill"
-    });
-  });
-  $(function() {
-    $( "#accordion-resizer" ).resizable({
-      minHeight: 140,
-      minWidth: 200,
-      resize: function() {
-        $( "#accordion" ).accordion( "refresh" );
-      }
-    });
-  });
+if(unidad>=9){
+    unidad = 0;
+    decena = ++decena;
+    if(decena>=9){
+        decena = 0;
+        centena = ++centena;
+    }else{
+        concat = mil +""+centena+""+decena+""+unidad;
+    }
+    
+}else{
+        unidad = ++unidad;
+        concat = mil +""+centena+""+decena+""+unidad;
+    
+}
+var id_producto = fecha.getMonth()+1+""+ fecha.getFullYear()+""+concat;    
+console.log(id_producto);
+}

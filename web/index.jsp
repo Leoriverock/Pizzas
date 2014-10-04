@@ -12,7 +12,6 @@
 	<head>
 		<title>Pizzas Le</title>
 		<script src="js/jquery.min.js"></script>
-                <script src="js/jquery-ui.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
 		<script src="js/init.js"></script>
@@ -23,8 +22,8 @@
                 
                 <style type="text/css">
                     #Gustos{visibility: hidden;}
-                    
                 </style>
+                
 
 	</head>
 	
@@ -79,7 +78,7 @@
                                                             <a class="button">Pedidos</a>
                                                         </div>
                                                         <div class="6u">
-                                                            <a  onclick="muestra_oculta('contenido_a_mostrar','contenido_a_ocultar')" class="button">Agregar</a>
+                                                            <a  onclick="muestra_oculta('contenido_a_mostrar','contenido_a_ocultar');generar_id_producto();" class="button">Agregar</a>
                                                         </div>
                                                     </div>
                                                     <!--Lista de pedidos-->
@@ -89,7 +88,7 @@
                                                         <form method="post" action="#">
                                                         <div class="row half">
                                                             <div class="4u">
-                                                               <label class="text" name="Id_Pedido">Pedido Nª 2332</label>
+                                                                <label class="text" name="Id_Pedido">Pedido Nª</label>
                                                             </div>
                                                             <div class="4u">
                                                                 <label class="text" name="Fecha"><script>
@@ -109,40 +108,60 @@
                                                                 <!--La direccion se carga cuando cargo el cliente-->
                                                             </div>  
                                                         </div> 
-                                                         <div class="row">
-                                                             <label>Agregar Productos</label>
-                                                             <select class="6u"  name="Productos" onchange="muestraGustos()">
-                                                                  <option selected>--- Cargar producto ---</option>
-                                                                  <option value="0">Producto 1</option>
-                                                                  <option value="1">Producto 2</option>
-                                                            </select>
-                                                        </div>  
-                                                            <div id="Gustos" class="row">
-                                                                <fieldset>
-                                                                    <legend class="12u">Gustos</legend>
-                                                                    <div class="6u">
-                                                                        <input type="checkbox" name="" value="1">Gusto 1
-                                                                    </div>
-                                                                    <div class="6u">
-                                                                        <input type="checkbox" name="" value="2">Gusto 2
-                                                                    </div> 
-                                                                    <div class="6u">
-                                                                        <input type="checkbox" name="" value="1">Gusto 1
-                                                                    </div>
-                                                                    <div class="6u">
-                                                                        <input type="checkbox" name="" value="2">Gusto 2
-                                                                    </div> 
-                                                                </fieldset>
-                                                            </div>     
-                                                            <div class="row">
-                                                                <div class="12u">
-                                                                    <table>
-                                                                        <tr><th><a class="button">Añadir</a></th></tr> 
-                                                                        <tr><th>.</th></tr>
-                                                                        <tr><th><a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar')" class="button">Confirmar</a></th></tr> 
-                                                                    </table>
-                                                                </div>  
+                                                        <div class="row">
+                                                            <div class="6u">
+                                                                <label>Agregar Productos</label>
+                                                                <select id="Prod" name="Prod" class="12u">
+                                                                      <option selected>--- Cargar producto ---</option>
+                                                                      <option value="uno">Producto 1</option>
+                                                                      <option value="2">Producto 2</option>
+                                                                </select>
+                                                            </div>        
+                                                        </div>    
+                                                        <div id="Gustos" class="row">
+                                                            <fieldset>
+                                                                <legend class="12u">Gustos</legend>
+                                                                <div class="6u">
+                                                                    <input type="checkbox" name="" value="1">Gusto 1
+                                                                </div>
+                                                                <div class="6u">
+                                                                    <input type="checkbox" name="" value="2">Gusto 2
+                                                                </div> 
+                                                                <div class="6u">
+                                                                    <input type="checkbox" name="" value="1">Gusto 1
+                                                                </div>
+                                                                <div class="6u">
+                                                                    <input type="checkbox" name="" value="2">Gusto 2
+                                                                </div> 
+                                                            </fieldset>
+                                                        </div>     
+                                                        <div class="row">
+                                                            <div class="12u">
+                                                                <table>
+                                                                    <tr><th><a class="button">Añadir</a></th></tr> 
+                                                                </table>
+                                                            </div>  
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="12u">
+                                                                <table>
+                                                                    <thead>
+                                                                    <tr>
+                                                                       <th>Producto 1</th>
+                                                                       <th>Cantidad</th>
+                                                                       <th>Precio</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                       <td></td>
+                                                                       <td></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table> 
+                                                                <tr><th><a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar')" class="button">Confirmar</a></th></tr> 
                                                             </div>
+                                                        </div>
                                                         </form>
                                                     
                                             </section>
@@ -159,10 +178,10 @@
                                                         
                                                             <form method="POST" action="ValidarClases.jsp">
                                                                     <div class="row half">
-                                                                            <div class="6u"><input type="text" class="text" name="name" placeholder="Nombre" /></div>
-                                                                            <div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" /></div>
+                                                                            <div class="6u"><input type="text" class="text" name="name" placeholder="Nombre" requiered = "requiered"/></div>
+                                                                            <div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" requiered = "requiered"/></div>
                                                                             <div class="6u"><input type="text" class="text" name="mobile" placeholder="Celular" /></div>
-                                                                            <div class="6u"><input type="text" class="text" name="phone" placeholder="Telefono" /></div>
+                                                                            <div class="6u"><input type="text" class="text" name="phone" placeholder="Telefono" requiered = "requiered"/></div>
                                                                     </div>
                                                                     <div class="row half">
                                                                             <div class="12u">
@@ -219,6 +238,18 @@
 					<div class="copyright">
 						<p>&copy; 2014 La Pandilla Inc.</p>
 					</div>
+                        </div>
+                <script>
+    $('select#Prod').on('change',function(){
+    var valor = $(this).val();
+    if(valor == "uno"){
+        document.getElementById("Gustos").style.visibility = "visible";
+    }
+    else{
+       document.getElementById("Gustos").style.visibility = "hidden"; 
+    }
+    });
+    </script>
                                 
 			
     </body>
