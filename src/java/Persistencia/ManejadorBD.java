@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,6 +67,24 @@ public class ManejadorBD {
             System.out.println("No hay clientes aun");
             return null;
         }
+    }
+    //Este metodo controlo el chequeo del blur de ajax
+    public boolean existeCliente(String name){
+        boolean flag = false;
+        try {
+            ResultSet rs = st.executeQuery("select * from clientes where nombre = '"+name+"'");
+            while(rs.next()){
+              if(rs!=null)
+                  flag = true;
+              else
+                  flag = false;
+            } 
+        } catch (SQLException ex) {
+             Logger.getLogger(Clientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("showtime: "+flag);
+        return flag;
+       
     }
 
 }

@@ -23,8 +23,30 @@
                 <style type="text/css">
                     #Gustos{visibility: hidden;}
                 </style>
-                
+                <!--Codigo para Guille-->
+                <script type="text/javascript">
+                $(document).ready(function() {	
+                $('#name').blur(function(){
 
+                   // $('#Info').html('<img src="Images/ajax-loader.gif" alt="" />').fadeOut(1000);
+
+                    var name = $(this).val(); //Este valor lo saco del id="name" que esta en section clientes imput name		
+                    var dataString = 'name='+name;
+
+                    $.ajax({
+                type: "POST",
+                url: "ValidarUsuario.jsp",
+                data: dataString,
+                success: function(data) {
+                                    $('#Info').fadeIn(1000).html(data);
+                                    console.log(data);
+                        }
+                    });
+                });
+            });
+             </script>
+             <!--Codigo para Guille-->
+                
 	</head>
 	
 	<body>
@@ -178,7 +200,8 @@
                                                         
                                                             <form method="POST" action="ValidarClases.jsp">
                                                                     <div class="row half">
-                                                                            <div class="6u"><input type="text" class="text" name="name" placeholder="Nombre" requiered = "requiered"/></div>
+                                                                            <div class="12u" id="Info"></div>
+                                                                            <div class="6u"><input type="text" class="text" id="name" name="name" placeholder="Nombre" requiered = "requiered"/></div>
                                                                             <div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" requiered = "requiered"/></div>
                                                                             <div class="6u"><input type="text" class="text" name="mobile" placeholder="Celular" /></div>
                                                                             <div class="6u"><input type="text" class="text" name="phone" placeholder="Telefono" requiered = "requiered"/></div>
