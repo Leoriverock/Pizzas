@@ -15,6 +15,7 @@
     <body>
          <% Clientes cliente = new Clientes();
            String usuario = request.getParameter("name");
+           
        
             if(cliente.existeCliente(usuario)){
                  out.println("<div id=\"Error\">El cliente ya existe</div>");

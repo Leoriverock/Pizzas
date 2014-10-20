@@ -6,8 +6,10 @@
 
 package Servlet;
 
+import Persistencia.Clientes;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,20 +36,22 @@ public class ServletAction extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-        String edad = request.getParameter("data");
-            System.out.println(edad);
+        
+           
+      
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletAction</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletAction at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             Clientes cliente = new Clientes();
+           String usuario = request.getParameter("name");
+           
+       
+            if(cliente.existeCliente(usuario)){
+                 out.println("<div id=\"Error\">El cliente ya existe</div>");
+                                  }
+            else{
+                out.println("<div id='Success'>El cliente no existe</div>");
+            }
         }
     }
 

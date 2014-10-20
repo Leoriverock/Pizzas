@@ -6,6 +6,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="Persistencia.ManejadorBD"%>
+<%@page import="Servlet.ServletAction"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -35,7 +36,7 @@
 
                     $.ajax({
                 type: "POST",
-                url: "ValidarUsuario.jsp",
+                url: "ServletAction",
                 data: dataString,
                 success: function(data) {
                                     $('#Info').fadeIn(1000).html(data);
@@ -143,18 +144,7 @@
                                                         <div id="Gustos" class="row">
                                                             <fieldset>
                                                                 <legend class="12u">Gustos</legend>
-                                                                <div class="6u">
-                                                                    <input type="checkbox" name="" value="1">Gusto 1
-                                                                </div>
-                                                                <div class="6u">
-                                                                    <input type="checkbox" name="" value="2">Gusto 2
-                                                                </div> 
-                                                                <div class="6u">
-                                                                    <input type="checkbox" name="" value="1">Gusto 1
-                                                                </div>
-                                                                <div class="6u">
-                                                                    <input type="checkbox" name="" value="2">Gusto 2
-                                                                </div> 
+                                                                <div id="InfoGustos"></div>
                                                             </fieldset>
                                                         </div>     
                                                         <div class="row">
@@ -266,6 +256,16 @@
     $('select#Prod').on('change',function(){
     var valor = $(this).val();
     if(valor == "uno"){
+        var dataString = 'name='+valor;
+        $.ajax({
+                type: "POST",
+                url: "Validar.jsp",
+                data: dataString,
+                success: function(data) {
+                                    $('#InfoGustos').fadeIn(1000).html(data);
+                                    //console.log(data);
+                        }
+                    });
         document.getElementById("Gustos").style.visibility = "visible";
     }
     else{
