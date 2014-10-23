@@ -4,18 +4,26 @@
     Author     : Batcave
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="Persistencia.ManejadorBD"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>JSP Page</title> 
+        <%    ManejadorBD mbd = ManejadorBD.getInstancia();
+        %>
     </head>
     <body>
          <% 
-             for(int i=1;i<5;i++){
-                out.println("<div class=6u><input type=checkbox value=1>Gusto"+i+"</div>");
+             String producto = request.getParameter("Prod");
+             //System.out.println("fuckuo"+producto);
+             ResultSet gustos = mbd.listarGustos();
+             while(gustos.next()){
+                out.println("<div class=6u><input type=checkbox value=1>"+gustos.getObject("nombre_gusto")+"</div>");
              }
+             
           %>   
         
          

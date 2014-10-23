@@ -7,9 +7,14 @@
 package Servlet;
 
 import Persistencia.Clientes;
+import Persistencia.ManejadorBD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,17 +46,30 @@ public class ServletAction extends HttpServlet {
       
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
-             Clientes cliente = new Clientes();
-           String usuario = request.getParameter("name");
-           
-       
-            if(cliente.existeCliente(usuario)){
-                 out.println("<div id=\"Error\">El cliente ya existe</div>");
-                                  }
-            else{
-                out.println("<div id='Success'>El cliente no existe</div>");
+            ManejadorBD mbd = ManejadorBD.getInstancia();
+            //Clientes cliente = new Clientes();
+            String usuario = request.getParameter("names");
+            ResultSet rs = mbd.ajaxClientes(usuario);
+            if(rs!=null){
+                try {
+                    while(rs.next()){
+                        out.println("<div id='suggest-element'><a data='"+rs.getObject(2)+"' id="+rs.getObject(1)+">"+rs.getObject(2)+' '+rs.getString(3)+"</a></div>");
+                        System.out.println(rs.getObject(1));
+                                }
+
+                } catch (SQLException ex) {
+                    //Logger.getLogger(ServletAction.class.getName()).log(Level.SEVERE, null, ex);
+                    out.println("<div id='suggest-element'>No Existe</div>");
+                }
+            }else{
+                out.println("<div id='suggest-element'>No Existe</div>");
             }
+            /*if(cliente.existeCliente(usuario)){
+                out.println("<div id='Success'>Existe </div>");
+                }
+                else{
+                out.println("<div id='Error'>No Existe</div>");
+                }*/
         }
     }
 

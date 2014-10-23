@@ -42,7 +42,6 @@ public class Clientes {
         mbd.registroCliente(this.getNombre(),this.getApellido(),this.getDireccion());
     }
     
-    //Este metodo controlo el chequeo del blur de ajax
     public boolean existeCliente(String name){
        return mbd.existeCliente(name);
     }

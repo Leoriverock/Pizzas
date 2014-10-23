@@ -1041,3 +1041,19 @@
 		{
 			background-color: #e8fdef;
 		}
+
+                .suggest-element
+                {
+                    margin-left:5px;
+                    margin-top:5px;
+                    width:350px;
+                    cursor:pointer;
+                }
+                #Info 
+                {
+                    width:250px;
+                    height:100px;
+                    overflow:auto;
+                    position:  relative;
+                    
+                }

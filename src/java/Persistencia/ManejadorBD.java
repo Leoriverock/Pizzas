@@ -68,11 +68,25 @@ public class ManejadorBD {
             return null;
         }
     }
-    //Este metodo controlo el chequeo del blur de ajax
+    //Ajax function clientes autocompleta
+    public ResultSet ajaxClientes(String name){
+        ResultSet rs = null;
+        try {
+             rs = st.executeQuery("select * from clientes where nombre_cliente like '"+name+"%'");
+             if(rs==null) rs=null;            
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+        
+    
+    }
+    //Chequeo si cliente existe - prueba ajax blur
     public boolean existeCliente(String name){
         boolean flag = false;
         try {
-            ResultSet rs = st.executeQuery("select * from clientes where nombre = '"+name+"'");
+            ResultSet rs = st.executeQuery("select * from clientes where nombre_cliente like '"+name+"%'");
             while(rs.next()){
               if(rs!=null)
                   flag = true;
@@ -86,5 +100,25 @@ public class ManejadorBD {
         return flag;
        
     }
-
+    //Select gustos
+    public ResultSet listarGustos(){
+        try {
+            ResultSet rs = st.executeQuery("select * FROM gustos");
+             return rs;
+        } catch (SQLException ex) {
+            System.out.println("No hay gustos aun");
+            return null;
+        }
+    }
+    //Listar productos simples y compuestos
+    public ResultSet listarProductos(){
+        try {
+            ResultSet rs = st.executeQuery("select * FROM productos_simples UNION select * FROM productos_compuestos");
+             return rs;
+        } catch (SQLException ex) {
+            System.out.println("No hay productos aun");
+            return null;
+        }
+    }
+    
 }

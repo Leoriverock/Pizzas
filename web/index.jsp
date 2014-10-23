@@ -24,15 +24,14 @@
                 <style type="text/css">
                     #Gustos{visibility: hidden;}
                 </style>
-                <!--Codigo para Guille-->
                 <script type="text/javascript">
                 $(document).ready(function() {	
-                $('#name').blur(function(){
+                $('#names').keypress(function(){
 
-                   // $('#Info').html('<img src="Images/ajax-loader.gif" alt="" />').fadeOut(1000);
+                    $('#Info').html('<img src="Images/ajax-loader.gif" alt="Cargando" />').fadeOut(1000);
 
-                    var name = $(this).val(); //Este valor lo saco del id="name" que esta en section clientes imput name		
-                    var dataString = 'name='+name;
+                    var name = $(this).val(); 		
+                    var dataString = 'names='+name;
 
                     $.ajax({
                 type: "POST",
@@ -40,13 +39,17 @@
                 data: dataString,
                 success: function(data) {
                                     $('#Info').fadeIn(1000).html(data);
-                                    console.log(data);
-                        }
+                                    $('#suggest-element').click(function(){
+                                    var id = $(this).attr('yo');
+                                    console.log(id);
+                                    $('#names').val($('#'+id).attr('data'));
+                                    $('#Info').fadeOut(1000);
+                                    });   
+                            }
                     });
                 });
             });
              </script>
-             <!--Codigo para Guille-->
                 
 	</head>
 	
@@ -101,7 +104,7 @@
                                                             <a class="button">Pedidos</a>
                                                         </div>
                                                         <div class="6u">
-                                                            <a  onclick="muestra_oculta('contenido_a_mostrar','contenido_a_ocultar');generar_id_producto();" class="button">Agregar</a>
+                                                            <a  onclick="muestra_oculta('contenido_a_mostrar','contenido_a_ocultar');" class="button">Agregar</a>
                                                         </div>
                                                     </div>
                                                     <!--Lista de pedidos-->
@@ -110,17 +113,19 @@
                                                     <div id="contenido_a_mostrar">
                                                         <form method="post" action="#">
                                                         <div class="row half">
-                                                            <div class="4u">
-                                                                <label class="text" name="Id_Pedido">Pedido Nª</label>
+                                                            <div class="3u">
+                                                                <label class="text" name="Id_Pedido">Pedido Nª 14100001</label>
                                                             </div>
-                                                            <div class="4u">
+                                                            <div class="3u">
                                                                 <label class="text" name="Fecha"><script>
                                                                     var f = new Date();
                                                                     document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
                                                                     </script> 
                                                                 </label>
                                                             </div>
-                                                            <div class="4u"><input id="names" type="text" class="text" name="name" placeholder="Buscar cliente..." /></div>
+                                                            
+                                                            <div class="4u"><input id="names" type="text" class="text" name="names" placeholder="Buscar cliente..." /></div>
+                                                            <div class="2u" id="Info"></div>
                                                             <!--El nombre lo traigo con una funcion ajax de busqueda-->
                                                             <div class="6u"><input type="text" class="text" name="celular" placeholder="Celular"  require=""/></div>
                                                             <div class="6u"><input type="text" class="text" name="telephone" placeholder="Telefono" /></div>
@@ -135,9 +140,18 @@
                                                             <div class="6u">
                                                                 <label>Agregar Productos</label>
                                                                 <select id="Prod" name="Prod" class="12u">
-                                                                      <option selected>--- Cargar producto ---</option>
-                                                                      <option value="uno">Producto 1</option>
-                                                                      <option value="2">Producto 2</option>
+                                                                    <option selected>--- Cargar producto ---</option>
+                                                                    <%
+                                                                        ResultSet productos = mbd.listarProductos();
+                                                                        while(productos.next()){
+                                                                           
+                                                                    %>
+                                                                    <option value="<%=productos.getObject(4)%>"> <%=productos.getObject(3)%></option>
+                                                                    
+                                                                    <%
+                                                                     
+                                                                    }
+                                                                    %>
                                                                 </select>
                                                             </div>        
                                                         </div>    
@@ -171,7 +185,7 @@
                                                                     </tr>
                                                                     </tbody>
                                                                 </table> 
-                                                                <tr><th><a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar')" class="button">Confirmar</a></th></tr> 
+                                                                <tr><th><a onclick="oculta_muestra('contenido_a_mostrar','contenido_a_ocultar');" class="button">Confirmar</a></th></tr> 
                                                             </div>
                                                         </div>
                                                         </form>
@@ -190,7 +204,6 @@
                                                         
                                                             <form method="POST" action="ValidarClases.jsp">
                                                                     <div class="row half">
-                                                                            <div class="12u" id="Info"></div>
                                                                             <div class="6u"><input type="text" class="text" id="name" name="name" placeholder="Nombre" requiered = "requiered"/></div>
                                                                             <div class="6u"><input type="text" class="text" name="surname" placeholder="Apellido" requiered = "requiered"/></div>
                                                                             <div class="6u"><input type="text" class="text" name="mobile" placeholder="Celular" /></div>
@@ -253,27 +266,29 @@
 					</div>
                         </div>
                 <script>
-    $('select#Prod').on('change',function(){
-    var valor = $(this).val();
-    if(valor == "uno"){
-        var dataString = 'name='+valor;
-        $.ajax({
-                type: "POST",
-                url: "Validar.jsp",
-                data: dataString,
-                success: function(data) {
-                                    $('#InfoGustos').fadeIn(1000).html(data);
-                                    //console.log(data);
-                        }
-                    });
-        document.getElementById("Gustos").style.visibility = "visible";
-    }
-    else{
-       document.getElementById("Gustos").style.visibility = "hidden"; 
-    }
-    });
-    </script>
+                $('select#Prod').on('change',function(){
+                var valor = $(this).val();
+                console.log(valor);
+                if(valor=="1") {
+                var dataString = 'name='+valor;
+                    $.ajax({
+                            type: "POST",
+                            url: "Validar.jsp",
+                            data: dataString,
+                            success: function(data) {
+                                                $('#InfoGustos').fadeIn(1000).html(data);
+                                                //console.log(data);
+                                    }
+                                });
                                 
+                
+                    document.getElementById("Gustos").style.visibility = "visible";
+                }
+                else{
+                   document.getElementById("Gustos").style.visibility = "hidden"; 
+                }
+                });
+                </script> 
 			
     </body>
 </html>
