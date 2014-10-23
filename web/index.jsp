@@ -40,7 +40,7 @@
                 success: function(data) {
                                     $('#Info').fadeIn(1000).html(data);
                                     $('#suggest-element').click(function(){
-                                    var id = $(this).attr('yo');
+                                    var id = $(this).attr('id');
                                     console.log(id);
                                     $('#names').val($('#'+id).attr('data'));
                                     $('#Info').fadeOut(1000);
