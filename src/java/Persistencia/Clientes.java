@@ -12,6 +12,10 @@ import javax.sql.*;
  * @author Batcave
  */
 public class Clientes {
+
+    public static void add(Clientes persona) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     private String Nombre;
     private String Apellido;

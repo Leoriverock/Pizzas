@@ -72,7 +72,7 @@ public class ManejadorBD {
     public ResultSet ajaxClientes(String name){
         ResultSet rs = null;
         try {
-             rs = st.executeQuery("select * from clientes where nombre_cliente like '"+name+"%'");
+             rs = st.executeQuery("select * from clientes where nombre_cliente like '"+name+"%' or apellido_cliente like '"+name+"%' ");
              if(rs==null) rs=null;            
              
         } catch (SQLException ex) {

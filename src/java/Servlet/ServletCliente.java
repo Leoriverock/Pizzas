@@ -7,14 +7,9 @@
 package Servlet;
 
 import Persistencia.Clientes;
-import Persistencia.ManejadorBD;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Batcave
  */
-@WebServlet(name = "ServletAction", urlPatterns = {"/ServletAction"})
-public class ServletAction extends HttpServlet {
+@WebServlet(name = "ServletCliente", urlPatterns = {"/ServletCliente"})
+public class ServletCliente extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,38 +34,34 @@ public class ServletAction extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         response.setContentType("text/html;charset=UTF-8");
-        String usuario = request.getParameter("names");
-           
-      
+        ArrayList<Clientes> personas = new ArrayList<>();
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            ManejadorBD mbd = ManejadorBD.getInstancia();
-            
-            System.out.println("Tecleo: "+ usuario);
-            ResultSet rs = mbd.ajaxClientes(usuario);
-            
-            /*if(rs!=null){
-                try {
-                    while(rs.next()){
-                        out.println("<div id='suggest-element'><a data='"+rs.getObject(2)+"' id='"+rs.getObject(1)+"'>"+rs.getObject(2)+' '+rs.getString(3)+"</a></div>");
-                        //System.out.println(rs.getObject(1));
-                                }
+            // Obtengo los datos de la peticion
+		String nombre = request.getParameter("names");
+                System.out.println(nombre);
+		// Compruebo que los campos del formulario tienen datos para añadir a la tabla
+		if (!nombre.equals("")) {
+			// Creo el objeto persona y lo añado al arrayList
+			Clientes persona = new Clientes();
+                        persona.setNombre(nombre);
+			personas.add(persona);
+		}
 
-                } catch (SQLException ex) {
-                    //Logger.getLogger(ServletAction.class.getName()).log(Level.SEVERE, null, ex);
-                    out.println("<div id='suggest-element'>No Existe</div>");
-                }
-            }else{
-                out.println("<div id='suggest-element'>No Existe</div>");
-            }*/
-            /*if(cliente.existeCliente(usuario)){
-                out.println("<div id='Success'>Existe </div>");
-                }
-                else{
-                out.println("<div id='Error'>No Existe</div>");
-                }*/
+		out.println("<table style= cellspacing=\"1\" bgcolor=\"#0099cc\">");
+		out.println("<tr>");
+		out.println("<td style= rowspan=\"7\" align=\"center\" bgcolor=\"#f8f8f8\"> NOMBRE </td>");			
+		out.println("<td style= rowspan=\"7\" align=\"center\" bgcolor=\"#f8f8f8\">APELLIDO</td>");
+		out.println("<td style= rowspan=\"7\" align=\"center\" bgcolor=\"#f8f8f8\">EDAD</td>");
+		out.println("</tr>");
+		for(int i=0; i<personas.size(); i++){
+			Clientes persona = personas.get(i);
+			out.println("<tr>");
+			out.println("<td style= rowspan=\"7\" align=\"center\" bgcolor=\"#f8f8f8\">"+persona.getNombre()+"</td>");			
+			out.println("</tr>");
+		}
+		out.println("</table>");
         }
     }
 

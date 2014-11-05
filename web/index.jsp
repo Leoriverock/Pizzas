@@ -7,12 +7,15 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="Persistencia.ManejadorBD"%>
 <%@page import="Servlet.ServletAction"%>
+<%@page import="Servlet.ServletCliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Pizzas Le</title>
-		<script src="js/jquery.min.js"></script>
+                <script src="js/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
 		<script src="js/init.js"></script>
@@ -25,7 +28,8 @@
                     #Gustos{visibility: hidden;}
                 </style>
                 <script type="text/javascript">
-                $(document).ready(function() {	
+                
+                /*$(document).ready(function() {	
                 $('#names').keypress(function(){
 
                     $('#Info').html('<img src="Images/ajax-loader.gif" alt="Cargando" />').fadeOut(1000);
@@ -39,16 +43,18 @@
                 data: dataString,
                 success: function(data) {
                                     $('#Info').fadeIn(1000).html(data);
-                                    $('#suggest-element').click(function(){
+                                    $('#suggest-element').bind("click",function(){
                                     var id = $(this).attr('id');
                                     console.log(id);
                                     $('#names').val($('#'+id).attr('data'));
+                                    console.log($('#names').val());
                                     $('#Info').fadeOut(1000);
                                     });   
                             }
                     });
                 });
-            });
+            });*/
+                
              </script>
                 
 	</head>
@@ -124,11 +130,13 @@
                                                                 </label>
                                                             </div>
                                                             
-                                                            <div class="4u"><input id="names" type="text" class="text" name="names" placeholder="Buscar cliente..." /></div>
-                                                            <div class="2u" id="Info"></div>
+                                                            <div class="3u"><input  class="text" type="text" id="names"  name="names" placeholder="Buscar cliente..." /></div>
+                                                            <div class="3u"><span id="finder" class="button icon icon-search"></span></div>
+                                                            <!--<div class="2u" id="Info"></div>    -->
                                                             <!--El nombre lo traigo con una funcion ajax de busqueda-->
-                                                            <div class="6u"><input type="text" class="text" name="celular" placeholder="Celular"  require=""/></div>
-                                                            <div class="6u"><input type="text" class="text" name="telephone" placeholder="Telefono" /></div>
+                                                            <div id="tabla"></div>
+                                                            <div class="6u"><input type="text" id="celularf" class="text" name="celular" placeholder="Celular"  require=""/></div>
+                                                            <div class="6u"><input type="text" id="telephonef" class="text" name="telephone" placeholder="Telefono" /></div>
                                                         </div>
                                                         <div class="row half">
                                                             <div class="12u">
@@ -265,7 +273,28 @@
 						<p>&copy; 2014 La Pandilla Inc.</p>
 					</div>
                         </div>
+               
+               
                 <script>
+                    //Funcion buscar clientes
+                $(document).ready(function() {	
+                $('#finder').click(function(){
+
+                   
+                    var name = $('#names').val(); 		
+                    var dataString = 'name='+name;
+
+                $.ajax({
+                type: "POST",
+                url: "ServletCliente",
+                data: dataString,
+                success: function(data) {
+                                    $('#tabla').html(data);  
+                            }
+                    });
+                });
+            });
+                //Funcion cargar gustos si selecciona con gustos
                 $('select#Prod').on('change',function(){
                 var valor = $(this).val();
                 console.log(valor);
